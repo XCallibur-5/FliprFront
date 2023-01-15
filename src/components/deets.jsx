@@ -9,7 +9,7 @@ import DayView from './slides'
 
 export default function Insight() {
     return (
-      <Box sx={{paddingLeft:'5%', }}>
+      <Box sx={{paddingLeft:'5%' }}>
         <Typography variant="h5" gutterBottom>
             <b>NIFTY 50</b>
         </Typography>
@@ -25,14 +25,16 @@ export default function Insight() {
           <Typography variant="h6" gutterBottom sx={{ color: 'red' }}>
               <ArrowCircleDownOutlinedIcon /><b>#####.**</b>
           </Typography>
-          
+          <Typography variant="caption" gutterBottom sx={{ color: 'grey',  }}>
+              As on 13 Jan, 2023 16:10 IST
+          </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="p" gutterBottom sx={{ color: 'grey', paddingLeft:'5%' }}>
+          <Typography variant="p" gutterBottom sx={{ color: 'grey', paddingLeft:'2.5%' }}>
               Day Range:-
           </Typography>
           <DayView />
-          <Typography variant="p" gutterBottom sx={{ color: 'grey', paddingLeft:'5%'}}>
+          <Typography variant="p" gutterBottom sx={{ color: 'grey', paddingLeft:'2.5%'}}>
               52-Week Range:-
           </Typography>
           <DayView />
