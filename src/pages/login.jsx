@@ -3,15 +3,38 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { Link } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
 
-export default function login(){
+export default function Login(){
+    const [userName, setUserName]=React.useState('');
+    const [password, setPassword]=React.useState('');
+    React.useEffect(() => {
+      const id = JSON.parse(localStorage.getItem('authorized'));
+      if(id){
+        window.location.replace("/");
+      }
+    }, []);
+    const Ruser ={
+        username: userName,
+        password: password,
+    }
+    
+    const login =async (e)=>{
+        e.preventDefault();
+        const k = await publicRequest.post("auth/", Ruser);
+        if(k.data){
+            localStorage.setItem('authorized', JSON.stringify(k.data.token));
+            window.location.replace("/");
+        }
+        //console.log(k);
+    }
     return (
         <Box sx={{textAlign:'center', margin:'40% 20%', borderStyle:'double', padding:'5%'}}>
             <Typography variant="h6" sx={{padding:'1% 4% 0 4%'}} gutterBottom>
                 Login
             </Typography>
-            <TextField id="standard-basic" label="Login Email" variant="standard" type="email" required />
-            <br />
+            <TextField id="standard-basic" label="User Name" variant="standard" type="text" required onChange={(e)=>setUserName(e.target.value)}/>
             <br />
             <TextField
                 id="filled-password-input"
@@ -20,9 +43,11 @@ export default function login(){
                 autoComplete="current-password"
                 variant="standard"
                 required
+                onChange={(e)=>setPassword(e.target.value)}
             />
             <br /><br />
-            <Button variant="contained">Login</Button>
+            <Button variant="contained" onClick={login}>Login</Button>
+            <Link to={'/register'}>Register Instead</Link>
         </Box>
     )
 }

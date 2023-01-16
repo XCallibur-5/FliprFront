@@ -3,36 +3,33 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import _ from 'lodash';
 
-const marks = [
-  {
-    value: 0,
-    label: '#####.**',
-  },
-  {
-    value: 100,
-    label: '#####.**',
-  },
-];
 
 
-export default function DiscreteSliderMarks() {
-  const [folio, setFolio] = React.useState('BSE');
-  const [endPt, setEndPt] = React.useState('bse');
+export default function DiscreteSliderMarks(props) {
+  const [folio, setFolio] = React.useState('BSE.NS');
 
-  React.useEffect(() => {
-  const items = JSON.parse(localStorage.getItem('dataKey'));
-  if (items) {
-   setFolio(items);
-   setEndPt(_.camelCase(items));
-  }
-}, []);
-
+//   React.useEffect(() => {
+//   const items = JSON.parse(localStorage.getItem('dataKey'));
+//   if (items) {
+//    setFolio(items);
+//   }
+// }, []);
+    const marks = [
+    {
+      value: 0,
+      label: props?.low,
+    },
+    {
+      value: 100,
+      label: props?.high,
+    },
+  ];
   return (
     <Box sx={{ width: 300, paddingLeft:'8%' }}>
       <Slider
         aria-label="Custom marks"
         size="small"
-        defaultValue={20}
+        defaultValue= {props?.def}
         valueLabelDisplay="auto"
         marks={marks}
         disabled

@@ -5,6 +5,12 @@ import ReviewDay from '../components/reviewDay'
 import TopButton from '../components/topButton'
 
 export default function OverView () {
+    React.useEffect(() => {
+        const id = JSON.parse(localStorage.getItem('authorized'));
+        if(!id){
+          window.location.replace("/login");
+        }
+      }, []);
     return(
         <div>
             <TopButton />
