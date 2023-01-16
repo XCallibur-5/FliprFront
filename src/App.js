@@ -1,14 +1,14 @@
 import './App.css';
-import Temp from './components/topButton'
 import Page1 from './pages/overview'
 import Page2 from './pages/graphs'
-import Tp from './components/deets'
+import Page3 from './pages/login'
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Page1 />
         <Page2 />
+        <Page3 />
       </header>
     </div>
   );

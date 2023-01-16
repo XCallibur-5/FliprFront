@@ -6,12 +6,25 @@ import Grid from '@mui/material/Grid';
 import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined';
 import ArrowCircleDownOutlinedIcon from '@mui/icons-material/ArrowCircleDownOutlined';
 import DayView from './slides'
+import _ from 'lodash';
+
 
 export default function Insight() {
+  const [folio, setFolio] = React.useState('BSE');
+  const [endPt, setEndPt] = React.useState('bse');
+
+  React.useEffect(() => {
+  const items = JSON.parse(localStorage.getItem('dataKey'));
+  if (items) {
+   setFolio(items);
+   setEndPt(_.camelCase(items));
+  }
+}, []);
+
     return (
       <Box sx={{paddingLeft:'5%' }}>
         <Typography variant="h5" gutterBottom>
-            <b>NIFTY 50</b>
+            <b>{ folio }</b>
         </Typography>
         <Divider light sx={{ borderBottomWidth: 5, width: '95%' }} />
         <Grid container spacing={2}>
@@ -26,7 +39,7 @@ export default function Insight() {
               <ArrowCircleDownOutlinedIcon /><b>#####.**</b>
           </Typography>
           <Typography variant="caption" gutterBottom sx={{ color: 'grey',  }}>
-              As on 13 Jan, 2023 16:10 IST
+              As on 12 Feb, 2023 16:10 IST
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>

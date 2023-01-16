@@ -3,12 +3,24 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
+import _ from 'lodash';
 
 export default function Insight() {
+  const [folio, setFolio] = React.useState('BSE');
+  const [endPt, setEndPt] = React.useState('bse');
+
+  React.useEffect(() => {
+  const items = JSON.parse(localStorage.getItem('dataKey'));
+  if (items) {
+   setFolio(items);
+   setEndPt(_.camelCase(items));
+  }
+}, []);
+
     return (
       <Box sx={{margin:'4% 0'}}>
         <Typography variant="h6" sx={{padding:'1% 4% 0 4%'}} gutterBottom>
-            <b>NIFTY 50</b>
+            <b>{ folio }</b>
         </Typography>
 
         <Divider sx={{ margin:'2% 2%' }}/>

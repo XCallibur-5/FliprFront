@@ -5,11 +5,19 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectSmall() {
-  const [age, setAge] = React.useState('');
+  const [folio, setFolio] = React.useState('BSE');
 
   const handleChange = (e) => {
-    setAge(e.target.value);
+    localStorage.setItem('dataKey', JSON.stringify(e.target.value));
+    window.location.reload(false);
   };
+   
+  React.useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('dataKey'));
+    if (items) {
+     setFolio(items);
+    }
+  }, [folio]);
 
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
@@ -17,17 +25,17 @@ export default function SelectSmall() {
       <Select
         labelId="select-small"
         id="select-small"
-        value={age}
+        value={folio}
         label="Listing"
         onChange={handleChange}
       >
-        <MenuItem value={1}>BSE</MenuItem>
-        <MenuItem value={2}>NSE</MenuItem>
-        <MenuItem value={3}>Ashok Leyland</MenuItem>
-        <MenuItem value={4}>Cipla</MenuItem>
-        <MenuItem value={5}>Eicher Motors</MenuItem>
-        <MenuItem value={6}>Reliance</MenuItem>
-        <MenuItem value={7}>Tata Steel</MenuItem>
+        <MenuItem value={'BSE'}>BSE</MenuItem>
+        <MenuItem value={'NSE'}>NSE</MenuItem>
+        <MenuItem value={'Ashok Leyland'}>Ashok Leyland</MenuItem>
+        <MenuItem value={'Cipla'}>Cipla</MenuItem>
+        <MenuItem value={'Eicher Motors'}>Eicher Motors</MenuItem>
+        <MenuItem value={'Reliance'}>Reliance</MenuItem>
+        <MenuItem value={'Tata Steel'}>Tata Steel</MenuItem>
       </Select>
     </FormControl>
   );
