@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = "https://stockapi.truebuddyz.com/";
 
 const user =  JSON.parse(localStorage.getItem('authorized'));
 
