@@ -10,6 +10,7 @@ export default function Registration(){
     const [email,setEmail] = React.useState("");
     const [password,setPassword] = React.useState("");
     const [err, setErr]= React.useState("");
+    
     const Ruser ={
         username: username,
         email: email,

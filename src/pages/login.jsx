@@ -9,6 +9,7 @@ import { publicRequest } from "../requestMethods";
 export default function Login(){
     const [userName, setUserName]=React.useState('');
     const [password, setPassword]=React.useState('');
+    const [err, setErr]= React.useState("");
     React.useEffect(() => {
       const id = JSON.parse(localStorage.getItem('authorized'));
       if(id){
@@ -22,15 +23,15 @@ export default function Login(){
     
     const login =async (e)=>{
         e.preventDefault();
+        setErr("check user name and/or Password.")
         const k = await publicRequest.post("auth/", Ruser);
         if(k.data){
             localStorage.setItem('authorized', JSON.stringify(k.data.token));
             window.location.replace("/");
         }
-        //console.log(k);
     }
     return (
-        <Box sx={{textAlign:'center', margin:'40% 20%', borderStyle:'double', padding:'5%'}}>
+        <Box sx={{textAlign:'center', margin:'18% 20%', borderStyle:'double', padding:'5%'}}>
             <Typography variant="h6" sx={{padding:'1% 4% 0 4%'}} gutterBottom>
                 Login
             </Typography>
@@ -46,6 +47,7 @@ export default function Login(){
                 onChange={(e)=>setPassword(e.target.value)}
             />
             <br /><br />
+            <p>{err}</p>
             <Button variant="contained" onClick={login}>Login</Button>
             <Link to={'/register'}>Register Instead</Link>
         </Box>

@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined';
 import ArrowCircleDownOutlinedIcon from '@mui/icons-material/ArrowCircleDownOutlined';
 import DayView from './slides'
-import _ from 'lodash';
 
 
 
